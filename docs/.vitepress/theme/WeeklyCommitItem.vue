@@ -257,14 +257,22 @@ const getMedal = (rank) => {
 
 const getAvatarUrl = (avatar) => {
   const basePath = import.meta.env.BASE_URL || '/'
-  const defaultAvatar = `${basePath}default-avatar.svg`.replace(/\/+/g, '/')
+  // 确保基础路径以斜杠结尾，避免拼接错误
+  const safeBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`
+  const defaultAvatar = `${safeBasePath}default-avatar.svg`.replace(/\/+/g, '/')
 
-  if (!avatar) return defaultAvatar
-
-  if (avatar.startsWith('http')) {
+  // 严格判断无效值
+  if (!avatar || typeof avatar !== 'string' || avatar.trim() === '') {
+    return defaultAvatar
+  }
+  
+  // 处理绝对路径（明确判断http/https）
+  if (avatar.startsWith('http://') || avatar.startsWith('https://')) {
     return avatar
   }
-  return `${basePath}${avatar}`.replace(/\/+/g, '/')
+  
+  // 处理相对路径（自动补全斜杠）
+  return `${safeBasePath}${avatar}`.replace(/\/+/g, '/')
 }
 
 const handleImageError = (event) => {
