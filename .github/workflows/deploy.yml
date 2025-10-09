@@ -53,7 +53,7 @@ jobs:
       - name: Check if data exists
         id: check-data
         run: |
-          if [ -f "docs/public/data/members.csv" ]; then
+          if [ -f "docs/public/data/members.json" ]; then
             echo "data-exists=true" >> $GITHUB_OUTPUT
             echo "✅ 使用现有数据文件"
           else
@@ -63,7 +63,7 @@ jobs:
 
       - name: Fetch latest member data (only if no data exists)
         if: steps.check-data.outputs.data-exists == 'false'
-        run: python scripts/fetch-members.py
+        run: python scripts/fetch_members/fetch_members.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ORG: datawhalechina
