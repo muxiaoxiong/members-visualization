@@ -61,6 +61,7 @@ module.exports = {
       { text: "📈 贡献者数据", link: "/stats" },
       { text: "👍🏻 组织项目统计", link: "/projects" },
       { text: "📚 同类组织统计", link: "/organization" },
+      { text: "🌟 推荐项目", link: "/project-ratings" },
       { text: "⭐ 点 Star", link: "/star" },
       {
         text: "🔗 相关链接",
@@ -87,6 +88,7 @@ module.exports = {
             { text: "📈 贡献者数据", link: "/stats" },
             { text: "👍🏻 组织项目统计", link: "/projects" },
             { text: "📚 同类组织统计", link: "/organization" },
+            { text: "🌟 推荐项目", link: "/project-ratings" },
             { text: "⭐ 点 Star", link: "/star" },
           ],
         },
